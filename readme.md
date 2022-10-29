@@ -1,3 +1,5 @@
+# Kubernetes API Gateway in the GKE Gateway controller and Contour implementations.
+
 ## What is the Gateway API?
 
 Gateway API is an open source project managed by the SIG-NETWORK community. The Gateway API evolves the Ingress resource and improves it.
@@ -19,7 +21,7 @@ Unlike Ingress, Gateway API supports cross-namespace routing.
 
 ![Текст с описанием картинки](/assets/img/diagram.png)
 
-### GatewayClass¶
+### GatewayClass
 A GatewayClass is a resource that defines a template for TCP/UDP (level 4) load balancers and HTTP(S) (level 7) load balancers in a Kubernetes cluster. 
 Defines a cluster-scoped resource that's a template for creating load balancers in a cluster.
 
@@ -39,7 +41,7 @@ The kubectl command-line tool, installed and configured to access your cluster.
 
 
 ## Deploying the demo with Contour Gateway API
-1. Go to the Contour directory:
+1. Go to the contour directory:
 ```
 cd contour
 ```
@@ -112,24 +114,24 @@ httproute.gateway.networking.k8s.io/kuard   ["local.projectcontour.io"]   22s
 $ kubectl -n projectcontour port-forward service/envoy 8888:80
 ```
 
-In another terminal, make a request to the application via the forwarded port (note, local.projectcontour.io is a public DNS record resolving to 127.0.0.1 to make use of the forwarded port):
+In another terminal make a request to the application via the forwarded port (note, local.projectcontour.io is a public DNS record resolving to 127.0.0.1 to make use of the forwarded port):
 
 ```
 $ curl -i http://local.projectcontour.io:8888
 ```
 
-You should receive a 200 response code along with the HTML body of the main kuard page.
+You will receive a 200 response code along with the HTML body of the main kuard page.
 
 You can also open http://local.projectcontour.io:8888/ in a browser.
 
 
 ## Deploying the demo with GKE Gateway API
-0. Go to the gke directory:
+1. Go to the gke directory:
 ```
 cd gke
 ```
 
-1. Create Gateway API CRDs:
+2. Create Gateway API CRDs:
 
 ```
 kubectl apply -k "github.com/kubernetes-sigs/gateway-api/config/crd?ref=v0.5.0"
@@ -142,7 +144,7 @@ customresourcedefinition.apiextensions.k8s.io/gateways.gateway.networking.k8s.io
 customresourcedefinition.apiextensions.k8s.io/httproutes.gateway.networking.k8s.io created
 ```
 
-2. Create the Gateway in your cluster:
+3. Create the Gateway in your cluster:
 ```
 kubectl apply -f gateway.yaml
 ```
@@ -183,7 +185,7 @@ store-v2-6856f59f7f-sq889       1/1     Running   0          20m
 ```
 kubectl apply -f route.yaml
 ```
-Validate that the store HTTPRoute has been applied successfully:
+8. Validate that the store HTTPRoute has been applied successfully:
 
 ```
 kubectl describe httproute.gateway.networking.k8s.io store
@@ -191,9 +193,7 @@ kubectl describe httproute.gateway.networking.k8s.io store
 
 These routing rules will process HTTP traffic in the following manner:
 
-Traffic to store.example.com/de goes to Service store-german.
-Traffic to store.example.com with the HTTP header "env: canary" goes to Service store-v2.
-The remaining traffic to store.example.com goes to Service store-v1.
+![Текст с описанием картинки](/assets/img/routes.png)
 
 8. Testing
 
@@ -211,6 +211,10 @@ curl -H "host: store.example.com" IP
 ```
 
 Replace IP with the IP address from the previous step.
+
+
+## Which API Gateway is right for me?
+
 
 This article was created using the following resources:
 [Kubernetes Gateway API](https://gateway-api.sigs.k8s.io/),

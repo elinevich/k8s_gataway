@@ -1,4 +1,13 @@
-# Kubernetes API Gateway in the GKE Gateway controller and Contour implementations
+# Kubernetes API Gateway in the GKE Gateway controller and the Contour implementations
+
+
+* [What is the Gateway API?](#what-is-the-gateway-api)
+* [What are the differences between Ingress and Gateway API?](#what-are-the-differences-between-ingress-and-gateway-api)
+* [Gateway API resources](#gateway-api-resources)
+* [Deploying the demo with the Contour Gateway API](#deploying-the-demo-with-the-contour-gateway-api)
+* [Deploying the demo with the GKE Gateway API](#deploying-the-demo-with-the-gke-gateway-api)
+* [Which API Gateway should be used?](#which-api-gateway-should-be-used)
+* [Sources](#sources)
 
 ## What is the Gateway API?
 
@@ -31,7 +40,7 @@ Defines where and how the load balancers listen for traffic. Cluster operators c
 ### Route Resources
 Route resources define protocol-specific rules for mapping requests from a Gateway to Kubernetes Services. It includes resources like HTTPRoute, TLSRoute, TCPRoute, UDPRoute, GRPCRoute.
 
-The Gateway API is supported by many projects. But in this article I will show, how deploy Kubernetes API Gataway resources, using Contour and Google Kubernetes Engine implementations and integrators.
+The Gateway API is supported by many projects. But in this article I will show, how to deploy Kubernetes API Gataway resources, using the Contour and the Google Kubernetes Engine implementations and integrators.
 
 ## Prerequisites
 The following prerequisites must be met before using Gateway API:
@@ -39,9 +48,9 @@ The following prerequisites must be met before using Gateway API:
 - a kubernetes cluster
 - the kubectl command-line tool
 
-> Note! Contour supports different clusters (refer to [the compatibility matrix](https://projectcontour.io/resources/compatibility-matrix/) for cluster version requirements). Unlike Contour the GKE Gateway works with GKE version 1.20 or later and supported by [VPC-native (Alias IP)](https://cloud.google.com/kubernetes-engine/docs/concepts/alias-ips) clusters only.
+> Note! The Contour supports different clusters (refer to [the compatibility matrix](https://projectcontour.io/resources/compatibility-matrix/) for cluster version requirements). Unlike the Contour the GKE Gateway works with GKE version 1.20 or later and supported by [VPC-native (Alias IP)](https://cloud.google.com/kubernetes-engine/docs/concepts/alias-ips) clusters only.
 
-## Deploying the demo with Contour Gateway API
+## Deploying the demo with the Contour Gateway API
 1. Go to the contour directory:
 ```
 cd contour
@@ -126,7 +135,7 @@ You will receive a 200 response code along with the HTML body of the main kuard 
 You can also open http://local.projectcontour.io:8888/ in a browser.
 
 
-## Deploying the demo with GKE Gateway API
+## Deploying the demo with the GKE Gateway API
 1. Go to the gke directory:
 ```
 cd gke
@@ -221,15 +230,18 @@ Replace IP with the IP address from the previous step.
 
 
 ## Which API Gateway should be used?
-The GKE Gateway controller is Google’s implementation of the Kubernetes Gateway API — after all, it has to integrate with GCP’s features such as Cloud Load Balancing, Network Endpoint Groups (NEGs), etc.
+The GKE Gateway controller is Google’s implementation of the Kubernetes Gateway API. In this way it has to integrate with GCP’s features such as Cloud Load Balancing, Network Endpoint Groups (NEGs), etc.
 
 The GKE GatewayClasses support different [capabilities](https://cloud.google.com/kubernetes-engine/docs/how-to/gatewayclass-capabilities) depending on their underlying load balancer.
 
-But GKE Gateway controller only supports GatewayClasses, Gateways, and HTTPRoutes. TCPRoutes, UDPRoutes, and TLSRoutes are not supported.
+The GKE Gateway controller only supports GatewayClasses, Gateways, and HTTPRoutes. TCPRoutes, UDPRoutes, and TLSRoutes are not supported.
+The Contour supports the same resources, but includes TLSRoutes.
 
-As mentioned before, Contour works with any clusters, but the GKE Gateway supports Google Kubernetes engine and VPC-native clusters only.
+As mentioned before, the Contour works with any clusters, but the GKE Gateway supports Google Kubernetes engine and VPC-native clusters only.
 
-This article was created using the following resources:
+## Sources
+
+This article was created using the following sources:
 [Kubernetes Gateway API](https://gateway-api.sigs.k8s.io/),
 [Contour Gateway API](https://projectcontour.io/guides/gateway-api/),
 [GKE Gateway API](https://cloud.google.com/kubernetes-engine/docs/concepts/gateway-api).

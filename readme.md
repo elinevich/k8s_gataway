@@ -1,4 +1,4 @@
-# Kubernetes API Gateway in the GKE Gateway controller and Contour implementations.
+# Kubernetes API Gateway in the GKE Gateway controller and Contour implementations
 
 ## What is the Gateway API?
 
@@ -36,9 +36,10 @@ The Gateway API is supported by many projects. But in this article I will show, 
 ## Prerequisites
 The following prerequisites must be met before using Gateway API:
 
-A working Kubernetes cluster. Refer to the compatibility matrix for cluster version requirements.
-The kubectl command-line tool, installed and configured to access your cluster.
+- a kubernetes cluster
+- the kubectl command-line tool
 
+> Note! Contour supports different clusters (refer to [the compatibility matrix](https://projectcontour.io/resources/compatibility-matrix/) for cluster version requirements). Unlike Contour the GKE Gateway works with GKE version 1.20 or later and supported by [VPC-native (Alias IP)](https://cloud.google.com/kubernetes-engine/docs/concepts/alias-ips) clusters only.
 
 ## Deploying the demo with Contour Gateway API
 1. Go to the contour directory:
@@ -213,8 +214,12 @@ curl -H "host: store.example.com" IP
 Replace IP with the IP address from the previous step.
 
 
-## Which API Gateway is right for me?
+## Which API Gateway is better?
+The GKE Gateway controller is Google’s implementation of the Kubernetes Gateway API — after all, it has to integrate with GCP’s features such as Cloud Load Balancing, Network Endpoint Groups (NEGs), etc.
+The GKE GatewayClasses support different capabilities depending on their underlying load balancer. See the GatewayClass capabilities to learn more about the different features supported across the available GatewayClasses.
+But GKE Gateway controller only supports GatewayClasses, Gateways, and HTTPRoutes. TCPRoutes, UDPRoutes, and TLSRoutes are not supported.
 
+As mentioned before, Contour works with any clusters, but the GKE Gateway supports Google Kubernetes engine and VPC-native clusters only.
 
 This article was created using the following resources:
 [Kubernetes Gateway API](https://gateway-api.sigs.k8s.io/),

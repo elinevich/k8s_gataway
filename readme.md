@@ -227,7 +227,7 @@ Make a request
 
 
 ```
-curl -H "host: store.example.com" $${\color{red}IP}$$
+curl -H "host: store.example.com" IP
 ```
 
 Replace IP with the IP address from the previous step.

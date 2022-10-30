@@ -219,7 +219,6 @@ Retrieve the IP address from the Gateway to send traffic to your application:
 kubectl get gateways.gateway.networking.k8s.io external-http -o=jsonpath="{.status.addresses[0].value}"
 ```
 or get the IP address of the Gateway by looking at the output of
-
 ```
 kubectl describe gateway external-http
 ```
@@ -227,8 +226,8 @@ kubectl describe gateway external-http
 Make a request
 
 
-```diff
-curl -H "host: store.example.com" - IP
+```
+curl -H "host: store.example.com" <p style='color:red'>IP</p>
 ```
 
 Replace IP with the IP address from the previous step.

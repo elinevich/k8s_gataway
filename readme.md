@@ -160,6 +160,12 @@ kubectl describe gateways.gateway.networking.k8s.io external-http
 ```
 kubectl apply -f https://raw.githubusercontent.com/GoogleCloudPlatform/gke-networking-recipes/main/gateway/gke-gateway-controller/app/store.yaml
 ```
+Сreated with this command:
+
+- store-v1 Deployment / Service
+- store-v2 Deployment / Service
+- store-german Deployment / Service
+
 6. Verify again, that resources are available:
 
 ```
@@ -214,9 +220,11 @@ curl -H "host: store.example.com" IP
 Replace IP with the IP address from the previous step.
 
 
-## Which API Gateway is better?
+## Which API Gateway should be used?
 The GKE Gateway controller is Google’s implementation of the Kubernetes Gateway API — after all, it has to integrate with GCP’s features such as Cloud Load Balancing, Network Endpoint Groups (NEGs), etc.
-The GKE GatewayClasses support different capabilities depending on their underlying load balancer. See the GatewayClass capabilities to learn more about the different features supported across the available GatewayClasses.
+
+The GKE GatewayClasses support different [capabilities](https://cloud.google.com/kubernetes-engine/docs/how-to/gatewayclass-capabilities) depending on their underlying load balancer.
+
 But GKE Gateway controller only supports GatewayClasses, Gateways, and HTTPRoutes. TCPRoutes, UDPRoutes, and TLSRoutes are not supported.
 
 As mentioned before, Contour works with any clusters, but the GKE Gateway supports Google Kubernetes engine and VPC-native clusters only.

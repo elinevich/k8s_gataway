@@ -227,8 +227,8 @@ kubectl describe gateway external-http
 Make a request
 
 
-```
-curl -H "host: store.example.com" IP
+```diff
+curl -H "host: store.example.com" - IP
 ```
 
 Replace IP with the IP address from the previous step.

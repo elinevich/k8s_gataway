@@ -216,7 +216,12 @@ These routing rules will process HTTP traffic in the following manner:
 Retrieve the IP address from the Gateway to send traffic to your application:
 
 ```
-kubectl get gateways.gateway.networking.k8s.io internal-http -o=jsonpath="{.status.addresses[0].value}"
+kubectl get gateways.gateway.networking.k8s.io external-http -o=jsonpath="{.status.addresses[0].value}"
+```
+or get the IP address of the Gateway by looking at the output of
+
+```
+kubectl describe gateway external-http
 ```
 
 Make a request

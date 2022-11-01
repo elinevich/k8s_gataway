@@ -1,6 +1,6 @@
 # Kubernetes API Gateway in the GKE Gateway controller and the Contour implementations
 
-* [What is the Gateway API?](#what-is-the-gateway-api)
+* [What is the Gateway API?](#what-is-the-gateway-api-will-it-replace-the-ingress)
 * [What advantages does the Gateway API have over the Ingress? ](#what-advantages-does-the-gateway-api-have-over-the-ingress)
 * [Gateway API resources](#gateway-api-resources)
 * [Deploying the demo with the Contour Gateway API](#deploying-the-demo-with-the-contour-gateway-api)
@@ -9,7 +9,7 @@
 * [Which API Gateway should be used?](#which-api-gateway-should-be-used)
 * [Sources](#sources)
 
-## What is the Gateway API?
+## What is the Gateway API? Will it replace the Ingress?
 
 Gateway API is an open source project managed by the SIG-NETWORK community. The Gateway API evolves the Ingress resource and improves it.
 
@@ -24,6 +24,7 @@ The Ingress demands that resources need to be in the same namespace. It’s not 
 Unlike the Ingress the Kubernetes Gateway API provides cross namespace routing, that allows to use one-to-many relationship between the Gateway and Route and deploy services to the different namespaces.
 
 ### Routing
+
 One of the most important features missing in Ingress is advanced traffic routing. Up until now, this was resolved by way of a service mesh, which made it complex and tightly coupled with the mesh implementation.
 
 You can implement numerous protocols with Gateway API, including support for TCPRoute, HTTPRoute and GRPCRoute.

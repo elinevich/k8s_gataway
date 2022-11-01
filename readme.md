@@ -6,6 +6,7 @@
 * [Gateway API resources](#gateway-api-resources)
 * [Deploying the demo with the Contour Gateway API](#deploying-the-demo-with-the-contour-gateway-api)
 * [Deploying the demo with the GKE Gateway API](#deploying-the-demo-with-the-gke-gateway-api)
+* [Deploying the demo with the NGINX Kubernetes Gateway](#deploying-the-demo-with-the-nginx-kubernetes-gateway)
 * [Which API Gateway should be used?](#which-api-gateway-should-be-used)
 * [Sources](#sources)
 
@@ -99,7 +100,7 @@ The kuard resources were created with this command in the default namespace:
 - service to expose the kuard application on TCP port 80.
 - HTTPRoute, attached to the contour Gateway, to route requests for local.projectcontour.io to the kuard service.
 
-7. Verify that the kuard resources are available:
+8. Verify that the kuard resources are available:
 
 ```
 kubectl get po,svc,httproute -l app=kuard
@@ -232,6 +233,96 @@ curl -H "host: store.example.com" IP
 
 Replace IP with the IP address from the previous step.
 
+
+## Deploying the demo with the NGINX Kubernetes Gateway
+
+1. Go to the nginx directory:
+
+```
+cd nginx
+```
+
+2. Install the Gateway CRDs:
+
+```
+kubectl apply -k "github.com/kubernetes-sigs/gateway-api/config/crd?ref=v0.5.1"
+```
+
+3. Create the nginx-gateway Namespace:
+
+```
+kubectl apply -f namespace.yaml
+```
+
+4. Create the njs-modules ConfigMap:
+
+```
+kubectl create configmap njs-modules --from-file=httpmatches.js -n nginx-gateway
+```
+
+5. Create the GatewayClass resource:
+
+```
+kubectl apply -f gatewayclass.yaml
+```
+6. Deploy the NGINX Kubernetes Gateway:
+
+```
+kubectl apply -f nginx-gateway.yaml
+```
+
+7. Create a LoadBalancer Service
+
+```
+kubectl apply -f loadbalancer.yaml
+```
+
+8. Lookup the public IP of the load balancer, which is reported in the EXTERNAL-IP column in the output of the following command:
+```
+kubectl get service/nginx-gateway -n nginx-gateway
+
+NAME            TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)                      AGE
+nginx-gateway   LoadBalancer   10.245.33.102   174.138.104.34   80:32407/TCP,443:31840/TCP   11m
+```
+
+9. Deploy the Cafe Application
+
+```
+kubectl apply -f cafe.yaml
+```
+
+10. Create the Gateway:
+```
+kubectl apply -f gateway.yaml
+```
+
+11. Create the HTTPRoute resources:
+
+```
+kubectl apply -f cafe-routes.yaml
+```
+
+12. To access the application, we will use curl to send requests to the coffee and tea Services.
+
+To get coffee:
+```
+curl --resolve cafe.example.com:80:174.138.104.34 http://cafe.example.com:80/coffee
+Server address: 10.244.0.98:8080
+Server name: coffee-7b9b4bbd99-vd7wd
+Date: 31/Oct/2022:19:57:54 +0000
+URI: /coffee
+Request ID: ffdb0cd952e1844c18182b74e7eb4cab
+```
+
+To get tea:
+```
+curl --resolve cafe.example.com:80:174.138.104.34 http://cafe.example.com:80/tea
+Server address: 10.244.0.19:8080
+Server name: tea-7f5799695f-ddmwd
+Date: 31/Oct/2022:19:57:36 +0000
+URI: /tea
+Request ID: 47ca8ed265d91e0fb9060d0f6066cc69
+```
 
 ## Which API Gateway should be used?
 The GKE Gateway controller is Google’s implementation of the Kubernetes Gateway API. In this way it has to integrate with GCP’s features such as Cloud Load Balancing, Network Endpoint Groups (NEGs), etc.

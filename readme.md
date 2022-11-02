@@ -1,4 +1,5 @@
-# Kubernetes API Gateway in the GKE Gateway controller and the Contour implementations
+# Coming changes of Ingress
+## The Kubernetes API Gateway in GKE, Contour, NGINX implementations
 
 * [What is the Gateway API?](#what-is-the-gateway-api-will-it-replace-the-ingress)
 * [What advantages does the Gateway API have over the Ingress? ](#what-advantages-does-the-gateway-api-have-over-the-ingress)
@@ -65,7 +66,7 @@ Defines where and how the load balancers listen for traffic. Cluster operators c
 ### Route Resources
 Route resources define protocol-specific rules for mapping requests from a Gateway to Kubernetes Services. It includes resources like HTTPRoute, TLSRoute, TCPRoute, UDPRoute, GRPCRoute.
 
-The Gateway API is supported by many projects. But in this article I will show, how to deploy Kubernetes API Gataway resources, using the Contour and the Google Kubernetes Engine implementations and integrators.
+The Gateway API is supported by many projects. But in this article I will show, how to deploy Kubernetes API Gataway resources, using the Contour, the Google Kubernetes Engine and NGINX Kubernetes Gateway implementations and integrators.
 
 ## Prerequisites
 The following prerequisites must be met before using Gateway API:
@@ -359,9 +360,15 @@ The Contour supports the same resources, but includes TLSRoutes.
 
 As mentioned before, the Contour works with any clusters, but the GKE Gateway supports Google Kubernetes engine and VPC-native clusters only.
 
+Ingress has a target exposing HTTP applications with a declarative syntax. 
+Gateway API exposes a more general API for proxying that can be used for more protocols than just HTTP, and models more infrastructure components to provide better deployment and management options for cluster operators.
+
 ## Sources
 
 This article was created using the following sources:
 [Kubernetes Gateway API](https://gateway-api.sigs.k8s.io/),
 [Contour Gateway API](https://projectcontour.io/guides/gateway-api/),
 [GKE Gateway API](https://cloud.google.com/kubernetes-engine/docs/concepts/gateway-api).
+
+
+

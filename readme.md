@@ -1,4 +1,4 @@
-# Coming changes of Ingress. 
+# Coming changes of Ingress
 ## The Kubernetes API Gateway in GKE, Contour, NGINX implementations
 
 * [What is the Gateway API? Will it replace the Ingress?](#what-is-the-gateway-api-will-it-replace-the-ingress)
@@ -167,13 +167,13 @@ httproute.gateway.networking.k8s.io/kuard   ["local.projectcontour.io"]   22s
 8. Testing the Gateway API
 
 ```
-$ kubectl -n projectcontour port-forward service/envoy 8888:80
+kubectl -n projectcontour port-forward service/envoy 8888:80
 ```
 
 In another terminal make a request to the application via the forwarded port (note, local.projectcontour.io is a public DNS record resolving to 127.0.0.1 to make use of the forwarded port):
 
 ```
-$ curl -i http://local.projectcontour.io:8888
+curl -i http://local.projectcontour.io:8888
 ```
 
 You will receive a 200 response code along with the HTML body of the main kuard page.
@@ -372,17 +372,10 @@ Request ID: 47ca8ed265d91e0fb9060d0f6066cc69
 
 ## Сonclusions
 
-The GKE Gateway controller is Google’s implementation of the Kubernetes Gateway API. In this way it has to integrate with GCP’s features such as Cloud Load Balancing, Network Endpoint Groups (NEGs), etc.
+The Gateway API is not a new Ingress. It is the newest way to expose Kubernetes API, positioned as role-oriented, portable, expressive and extensible standart for developing. 
 
-The GKE GatewayClasses support different [capabilities](https://cloud.google.com/kubernetes-engine/docs/how-to/gatewayclass-capabilities) depending on their underlying load balancer.
+Using advantages of the API, it became possible to create flexible and portable applications not only for the end user, but also for the multiple team of managers, developers and administarors.
 
-The GKE Gateway controller only supports GatewayClasses, Gateways, and HTTPRoutes. TCPRoutes, UDPRoutes, and TLSRoutes are not supported.
-The Contour supports the same resources, but includes TLSRoutes.
-
-As mentioned before, the Contour works with any clusters, but the GKE Gateway supports Google Kubernetes engine and VPC-native clusters only.
-
-Ingress has a target exposing HTTP applications with a declarative syntax. 
-Gateway API exposes a more general API for proxying that can be used for more protocols than just HTTP, and models more infrastructure components to provide better deployment and management options for cluster operators.
 
 ## Sources
 

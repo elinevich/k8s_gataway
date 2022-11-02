@@ -1,52 +1,67 @@
-# Coming changes of Ingress
+# Coming changes of Ingress. 
 ## The Kubernetes API Gateway in GKE, Contour, NGINX implementations
 
-* [What is the Gateway API?](#what-is-the-gateway-api-will-it-replace-the-ingress)
+* [What is the Gateway API? Will it replace the Ingress?](#what-is-the-gateway-api-will-it-replace-the-ingress)
+* [What problems does the Ingress have? ](#what-problems-does-the-ingress-have)
 * [What advantages does the Gateway API have over the Ingress? ](#what-advantages-does-the-gateway-api-have-over-the-ingress)
 * [Gateway API resources](#gateway-api-resources)
+* [From theory to practice. Prerequisites](#from-theory-to-practice-prerequisites)
 * [Deploying the demo with the Contour Gateway API](#deploying-the-demo-with-the-contour-gateway-api)
 * [Deploying the demo with the GKE Gateway API](#deploying-the-demo-with-the-gke-gateway-api)
 * [Deploying the demo with the NGINX Kubernetes Gateway](#deploying-the-demo-with-the-nginx-kubernetes-gateway)
-* [Which API Gateway should be used?](#which-api-gateway-should-be-used)
+* [Сonclusions](#conclusions)
 * [Sources](#sources)
 
 ## What is the Gateway API? Will it replace the Ingress?
 
-Gateway API is an open source project managed by the SIG-NETWORK community. The Gateway API evolves the Ingress resource and improves it.
+The Gateway API is an open source project managed by the SIG-NETWORK community, which provides a collection of resources that model service networking in Kubernetes. 
 
-Gateway and Ingress are both open source standards for routing traffic.
-Gateway is not a Ingress replacement, Gateway is an evolution of Ingress that provides the same function, delivered as a superset of the Ingress capabilities. 
+The Gateway is not a Ingress replacement, it is an evolution of Ingress that provides the same function, delivered as a superset improved of the Ingress capabilities.
 
-## What advantages does the Gateway API have over the Ingress? 
+## What problems does the Ingress have?
+
+The main problem of the Ingress is supporting only one user role – the Kubernetes administrator or operator, who manages the configuration.
+It doesn't work with multiple teams, where you are sharing a cluster between developers, system administrators and platform operators.
+
+Another problem is the proliferation of annotations and custom resource definitions (CRDs) in many Ingress implementations, where they unlock the capabilities of different data planes and implement features that aren’t built into the Ingress resource, like header‑based matching, traffic weighting, and multi‑protocol support. Gateway API delivers such capabilities as part of the core API standard.
+
+
+## What advantages does the Gateway API have over the Ingress?
 
 ### Cross namespace routing
 
+> Cross namespace routing is an appotunity to deploy Gateways and Routes into different Namespaces. It allows to attach Routes to Gateways across Namespace boundaries.
+
 The Ingress demands that resources need to be in the same namespace. It’s not a big deal, if your cluster is managed by one team, but one-to one relationship can be a problem, if you are sharing cluster between a few teams.
+
 Unlike the Ingress the Kubernetes Gateway API provides cross namespace routing, that allows to use one-to-many relationship between the Gateway and Route and deploy services to the different namespaces.
 
 ### Routing
+> Routing allows to match on HTTP traffic and direct it to Kubernetes backends
 
 One of the most important features missing in Ingress is advanced traffic routing. Up until now, this was resolved by way of a service mesh, which made it complex and tightly coupled with the mesh implementation.
 
 You can implement numerous protocols with Gateway API, including support for TCPRoute, HTTPRoute and GRPCRoute.
 
->Note! The GRPCRoute and TCPRoute resources included in the "Experimental" channel of Gateway API.
+> Note! The GRPCRoute and TCPRoute resources included in the "Experimental" channel of Gateway API.
 
 ### Traffic splitting
+> Traffic splitting allows to specify weights to shift traffic between different backends, which you can ombine with A/B or canary strategies to achieve complex rollouts in a simple way.
 
-You also can have weighted traffic routing, which you can combine with A/B or canary strategies to achieve complex rollouts in a simple way.
-
-The Gateway API supports typed Route resources and typed backends. In this way it is possible to create a flexible API, supporting different protocols (HTTP, GRPC) and different backend (Kubernetes Services, storage buckets, or functions).
+The Gateway API supports typed Route resources and typed backends. In this way it is possible to create a flexible API, supporting various protocols (HTTP, GRPC) and different backend (Kubernetes Services, storage buckets, or functions).
 
 ### TLS
+> TLS is the cryptographic protocol that powers encryption for many network applications. 
 
-Gateway API supports TLS configuration at various points in the network path between the client and service — for upstream and downstream independently. Depending on the listener configuration, various TLS modes and route types are possible. The cert-manager supporting is also available.
+The Gateway API supports TLS configuration at various points in the network path between the client and service — for upstream and downstream independently. Depending on the listener configuration, various TLS modes and route types are possible. The cert-manager supporting is also available.
 
 You also can configure the Gateway to reference a certificate in a different namespace.
 
 ### Integration with Progressive Delivery Tools
 
-The API Gateway currently provides integration with Flagger — a progressive delivery tool for advanced deployment strategies such as A/B, blue-green, and canary. 
+> Progressive Delivery is a modern software development lifecycle, builds on the principals of Continuous Integration and Continuous Delivery (CI/CD).
+
+The API Gateway currently provides integration with Flagger — a progressive delivery tool for Kubernetes, which provides advanced deployment strategies such as A/B, blue-green, and canary. 
 
 ## Gateway API resources
 
@@ -57,26 +72,31 @@ The API Gateway currently provides integration with Flagger — a progressive de
 ![Текст с описанием картинки](/assets/img/diagram.png)
 
 ### GatewayClass
+
 A GatewayClass is a resource that defines a template for TCP/UDP (level 4) load balancers and HTTP(S) (level 7) load balancers in a Kubernetes cluster. 
 Defines a cluster-scoped resource that's a template for creating load balancers in a cluster.
 
 ### Gateway
+
 Defines where and how the load balancers listen for traffic. Cluster operators create Gateways in their clusters based on a GatewayClass.
 
 ### Route Resources
+
 Route resources define protocol-specific rules for mapping requests from a Gateway to Kubernetes Services. It includes resources like HTTPRoute, TLSRoute, TCPRoute, UDPRoute, GRPCRoute.
 
-The Gateway API is supported by many projects. But in this article I will show, how to deploy Kubernetes API Gataway resources, using the Contour, the Google Kubernetes Engine and NGINX Kubernetes Gateway implementations and integrators.
+## From theory to practice. Prerequisites
 
-## Prerequisites
-The following prerequisites must be met before using Gateway API:
+The Gateway API is supported by many projects. But in this article I will show, how to deploy Kubernetes API Gataway resources, using  implementations and integrators of the Contour, the NGINX Kubernetes Gateway and recently released - the Google Kubernetes Engine.
+
+The following prerequisites must be done before using Gateway API:
 
 - a kubernetes cluster
 - the kubectl command-line tool
 
-> Note! The Contour supports different clusters (refer to [the compatibility matrix](https://projectcontour.io/resources/compatibility-matrix/) for cluster version requirements). Unlike the Contour the GKE Gateway works with GKE version 1.20 or later and supported by [VPC-native (Alias IP)](https://cloud.google.com/kubernetes-engine/docs/concepts/alias-ips) clusters only.
+> Note! There are various clusters suppotred by the [Contour](https://projectcontour.io/resources/compatibility-matrix/) and NGINX. But for the GKE Gateway must be used the GKE version 1.20 or later and [VPC-native (Alias IP)](https://cloud.google.com/kubernetes-engine/docs/concepts/alias-ips) clusters only.
 
 ## Deploying the demo with the Contour Gateway API
+
 1. Go to the contour directory:
 ```
 cd contour
@@ -350,7 +370,8 @@ URI: /tea
 Request ID: 47ca8ed265d91e0fb9060d0f6066cc69
 ```
 
-## Which API Gateway should be used?
+## Сonclusions
+
 The GKE Gateway controller is Google’s implementation of the Kubernetes Gateway API. In this way it has to integrate with GCP’s features such as Cloud Load Balancing, Network Endpoint Groups (NEGs), etc.
 
 The GKE GatewayClasses support different [capabilities](https://cloud.google.com/kubernetes-engine/docs/how-to/gatewayclass-capabilities) depending on their underlying load balancer.

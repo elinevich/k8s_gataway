@@ -30,14 +30,14 @@ Another problem is the proliferation of annotations and custom resource definiti
 
 ### Cross namespace routing
 
-> Cross namespace routing is an appotunity to deploy Gateways and Routes into different Namespaces. It allows to attach Routes to Gateways across Namespace boundaries.
+> Cross namespace routing is an appotunity to deploy Gateways and Routes into different namespaces. It allows to attach Routes to Gateways across namespace boundaries.
 
 The Ingress demands that resources need to be in the same namespace. It’s not a big deal, if your cluster is managed by one team, but one-to one relationship can be a problem, if you are sharing cluster between a few teams.
 
 Unlike the Ingress the Kubernetes Gateway API provides cross namespace routing, that allows to use one-to-many relationship between the Gateway and Route and deploy services to the different namespaces.
 
 ### Routing
-> Routing allows to match on HTTP traffic and direct it to Kubernetes backends
+> Routing allows to match on HTTP traffic and direct it to Kubernetes backends.
 
 One of the most important features missing in Ingress is advanced traffic routing. Up until now, this was resolved by way of a service mesh, which made it complex and tightly coupled with the mesh implementation.
 
@@ -55,7 +55,7 @@ The Gateway API supports typed Route resources and typed backends. In this way i
 
 The Gateway API supports TLS configuration at various points in the network path between the client and service — for upstream and downstream independently. Depending on the listener configuration, various TLS modes and route types are possible. The cert-manager supporting is also available.
 
-You also can configure the Gateway to reference a certificate in a different namespace.
+You also can configure the Gateway to reference a certificate in a different namespaces.
 
 ### Integration with Progressive Delivery Tools
 
@@ -385,6 +385,4 @@ This article was created using the following sources:
 [Kubernetes Gateway API](https://gateway-api.sigs.k8s.io/),
 [Contour Gateway API](https://projectcontour.io/guides/gateway-api/),
 [GKE Gateway API](https://cloud.google.com/kubernetes-engine/docs/concepts/gateway-api).
-
-
-
+[NGINX Kubernetes gateway](https://github.com/nginxinc/nginx-kubernetes-gateway).

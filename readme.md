@@ -1,7 +1,7 @@
 # Coming changes of Ingress
 ## The Kubernetes API Gateway in GKE, Contour, NGINX implementations
 
-> This article contains an explanation of the new powerful technology from Kubernetes - Gateway API, the benefits of using it with an example of GKE, Contour and NGINX
+> This article contains an explanation of the new powerful technology from Kubernetes - Gateway API, the benefits of using it with an example of GKE, Contour and NGINX providers.
 
 * [What is the Gateway API? Will it replace the Ingress?](#what-is-the-gateway-api-will-it-replace-the-ingress)
 * [What problems does the Ingress have? ](#what-problems-does-the-ingress-have)

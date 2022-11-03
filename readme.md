@@ -302,6 +302,7 @@ kubectl apply -f namespace.yaml
 4. Create the njs-modules ConfigMap:
 
 ```
+cd modules
 kubectl create configmap njs-modules --from-file=httpmatches.js -n nginx-gateway
 ```
 
@@ -334,6 +335,7 @@ nginx-gateway   LoadBalancer   10.245.33.102   174.138.104.34   80:32407/TCP,443
 9. Deploy the Cafe Application
 
 ```
+cd app
 kubectl apply -f cafe.yaml
 ```
 

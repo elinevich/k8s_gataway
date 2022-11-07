@@ -378,9 +378,15 @@ Request ID: 47ca8ed265d91e0fb9060d0f6066cc69
 
 ## Сonclusions
 
-The Gateway API is not a new Ingress. It is the newest way to expose Kubernetes API, positioned as role-oriented, portable, expressive and extensible standart for developing. 
+The Gateway API is the newest way to expose Kubernetes API, positioned as role-oriented, portable, expressive and extensible standart for developing.
 
 Using advantages of the API, it became possible to create flexible and portable applications not only for the end user, but also for the multiple team of managers, developers and administarors.
+
+Despite the advatages of the the Gateway API, an important features like request redirect and rewrite are in experimental mode. Of course, it is very promising and has a great impact in the future, but we recommend waiting for a more stable implementation of some features, but for now pay your attention to the ingress controller. For example, [NGINX Ingress Controller](https://www.nginx.com/products/nginx-ingress-controller/) can be a good solution to the problem with redirect and rewrite.
+
+And notice that there is no good or bad technology, picking the right tool for theapplication based on where and how you are going to use it. 
+
+
 
 
 ## Sources

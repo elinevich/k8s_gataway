@@ -49,6 +49,13 @@ You can implement numerous protocols with Gateway API, including support for TCP
 
 > Note! The GRPCRoute and TCPRoute resources included in the "Experimental" channel of Gateway API.
 
+### HTTP path redirects and rewrites
+> A redirects allow to give more than one URL address to a page, a rewrites - to completely separate the URL from the resource. 
+
+This is a necessary and powerful thing, which is available in Ingress only through annotations.
+
+Filters to path redirects and rewrites became available with v1beta1 version of the Gateway API, but still in experimental mode.
+
 ### Traffic splitting
 > Traffic splitting allows to specify weights to shift traffic between different backends, which you can ombine with A/B or canary strategies to achieve complex rollouts in a simple way.
 

@@ -16,9 +16,10 @@ The Gateway is not a Ingress replacement, it is an evolution of Ingress that pro
 
 ### What problems does the Ingress have?
 
-### 2.1 Ingress is supporting only one user role – the Kubernetes administrator or operator, who manages the configuration.
+The main problem of the Ingress is supporting only one user role – the Kubernetes administrator or operator, who manages the configuration.
+It doesn't work with multiple teams, where you are sharing a cluster between developers, system administrators and platform operators.
 
-### 2.2. the proliferation of annotations and custom resource definitions (CRDs) in many Ingress implementations, where they unlock the capabilities of different data planes and implement features that aren’t built into the Ingress resource, like header‑based matching, traffic weighting, and multi‑protocol support. Gateway API delivers such capabilities as part of the core API standard.
+Another problem is the proliferation of annotations and custom resource definitions (CRDs) in many Ingress implementations, where they unlock the capabilities of different data planes and implement features that aren’t built into the Ingress resource, like header‑based matching, traffic weighting, and multi‑protocol support. Gateway API delivers such capabilities as part of the core API standard.
 
 ## 3. Reveal the advantages of Gateway API.
 

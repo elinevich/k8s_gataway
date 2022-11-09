@@ -4,7 +4,7 @@
 
 > This article contains an explanation of the new powerful technology from Kubernetes - Gateway API, the benefits of using it on example of implementations from GKE, Contour and NGINX providers.
 
-![Logo](/assets/img/logo2.png)
+![Logo](/assets/img/logo3.png)
 
 * [What is the Gateway API? Will it replace the Ingress?](#what-is-the-gateway-api-will-it-replace-the-ingress)
 * [What problems does the Ingress have? ](#what-problems-does-the-ingress-have)

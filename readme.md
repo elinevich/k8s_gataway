@@ -1,5 +1,5 @@
 # The Kubernetes API Gateway: Ingress replacement or evolution?
-## Deploy Gateway API, using GKE, Contour and NGINX implementations
+## Deploy Gateway API with GKE, Contour and NGINX implementations
 
 
 > This article contains an explanation of the new powerful technology from Kubernetes - Gateway API, the benefits of using it on example of implementations from GKE, Contour and NGINX providers.
@@ -7,8 +7,8 @@
 ![Logo](/assets/img/logo3.png)
 
 * [What is the Gateway API? Will it replace the Ingress?](#what-is-the-gateway-api-will-it-replace-the-ingress)
-* [What problems does the Ingress have? ](#what-problems-does-the-ingress-have)
-* [What advantages does the Gateway API have over the Ingress? ](#what-advantages-does-the-gateway-api-have-over-the-ingress)
+* [What problems does the Ingress have?](#what-problems-does-the-ingress-have)
+* [What advantages does the Gateway API have over the Ingress?](#what-advantages-does-the-gateway-api-have-over-the-ingress)
 * [Gateway API resources](#gateway-api-resources)
 * [From theory to practice. Prerequisites](#from-theory-to-practice-prerequisites)
 * [Deploying the demo with the Contour Gateway API](#deploying-the-demo-with-the-contour-gateway-api)
@@ -34,8 +34,6 @@ Another problem is the proliferation of annotations and custom resource definiti
 ## What advantages does the Gateway API have over the Ingress?
 
 ### Cross namespace routing
-
-Traffic splitting allows to specify weights to shift traffic between different backends, which you can ombine with A/B or canary strategies to achieve complex rollouts in a simple way.
 
 > Cross namespace routing allows user access control to be applied differently across namespaces for Routes and Gateways, dividing access and control to different parts of the cluster routing configuration.
 

@@ -3,7 +3,7 @@
 
 ## Theses
 
-1. Introdaction: answering the question what is the Gateway API? Will it replace the Ingress?
+## 1. Introdaction: answering the question what is the Gateway API? Will it replace the Ingress?
 
 ### What is the Gateway API? Will it replace the Ingress?
 
@@ -12,19 +12,19 @@ The Gateway API is an open source project managed by the SIG-NETWORK community, 
 The Gateway is not a Ingress replacement, it is an evolution of Ingress that provides the same function, delivered as a superset improved of the Ingress capabilities.
 
 
-2. Reveal the problems of Ingress.
+## 2. Reveal the problems of Ingress.
 
 ### What problems does the Ingress have?
 
-2.1 Ingress is supporting only one user role – the Kubernetes administrator or operator, who manages the configuration.
+### 2.1 Ingress is supporting only one user role – the Kubernetes administrator or operator, who manages the configuration.
 
-2.2. the proliferation of annotations and custom resource definitions (CRDs) in many Ingress implementations, where they unlock the capabilities of different data planes and implement features that aren’t built into the Ingress resource, like header‑based matching, traffic weighting, and multi‑protocol support. Gateway API delivers such capabilities as part of the core API standard.
+### 2.2. the proliferation of annotations and custom resource definitions (CRDs) in many Ingress implementations, where they unlock the capabilities of different data planes and implement features that aren’t built into the Ingress resource, like header‑based matching, traffic weighting, and multi‑protocol support. Gateway API delivers such capabilities as part of the core API standard.
 
-3. Reveal the advantages of Gateway API.
+## 3. Reveal the advantages of Gateway API.
 
 ### What advantages does the Gateway API have over the Ingress?
 
-3.1. Describe what cross namespace routing is and how it works in the Gateway API.
+### 3.1. Describe what cross namespace routing is and how it works in the Gateway API.
 
 ### Cross namespace routing
 > Cross namespace routing allows user access control to be applied differently across namespaces for Routes and Gateways, dividing access and control to different parts of the cluster routing configuration.
@@ -33,7 +33,7 @@ The Ingress demands that resources need to be in the same namespace. It’s not 
 
 Unlike the Ingress the Kubernetes Gateway API provides cross namespace routing, that allows to use one-to-many relationship between the Gateway and Route and deploy services to the different namespaces.
 
-3.2. Describe what routing is and how it works in the Gateway API.
+### 3.2. Describe what routing is and how it works in the Gateway API.
 
 ### Routing
 > Routing allows to match on HTTP traffic and direct it to Kubernetes backends.
@@ -44,7 +44,7 @@ You can implement numerous protocols with Gateway API, including support for TCP
 
 > Note! The GRPCRoute and TCPRoute resources included in the "Experimental" channel of Gateway API.
 
-3.3. Describe what HTTP path redirects and rewrites are and how it works in the Gateway API.
+### 3.3. Describe what HTTP path redirects and rewrites are and how it works in the Gateway API.
 
 ### HTTP path redirects and rewrites
 > A redirects allow to give more than one URL address to a page, a rewrites - to completely separate the URL from the resource. 
@@ -52,14 +52,14 @@ You can implement numerous protocols with Gateway API, including support for TCP
 This is a necessary and powerful thing, which is available in Ingress only through annotations.
 Filters to path redirects and rewrites became available with v1beta1 version of the Gateway API, but still in experimental mode.
 
-3.4. Describe what traffic splitting is and how it works in the Gateway API.
+### 3.4. Describe what traffic splitting is and how it works in the Gateway API.
 
 ### Traffic splitting
 > Traffic splitting allows to specify weights to shift traffic between different backends, which you can ombine with A/B or canary strategies to achieve complex rollouts in a simple way.
 
 The Gateway API supports typed Route resources and typed backends. In this way it is possible to create a flexible API, supporting various protocols (HTTP, GRPC) and different backend (Kubernetes Services, storage buckets, or functions).
 
-3.5 Describe what TLS is and how it works in the Gateway API.
+### 3.5 Describe what TLS is and how it works in the Gateway API.
 
 ### TLS
 > TLS is the cryptographic protocol that powers encryption for many network applications. 
@@ -68,7 +68,7 @@ The Gateway API supports TLS configuration at various points in the network path
 
 You also can configure the Gateway to reference a certificate in a different namespaces.
 
-4. Describe the resources of Gateway API.
+## 4. Describe the resources of Gateway API.
 ### Gateway API resources
 
 - GatewayClass
@@ -77,7 +77,7 @@ You also can configure the Gateway to reference a certificate in a different nam
 
 ![how gateway works](/assets/img/diagram.png)
 
-4.1. Define the GatewayClass
+### 4.1. Define the GatewayClass
 
 ### GatewayClass
 
@@ -94,28 +94,30 @@ Defines where and how the load balancers listen for traffic. Cluster operators c
 
 Route resources define protocol-specific rules for mapping requests from a Gateway to Kubernetes Services. It includes resources like HTTPRoute, TLSRoute, TCPRoute, UDPRoute, GRPCRoute.
 
-5. Еhis is practise part, which shows how to deploy Gateway API, using Contour, GKE and NGINX implementations.
+## 5. From theory to practice. Prerequisites
+
+This is practise part, which shows how to deploy Gateway API, using Contour, GKE and NGINX implementations.
 
 The Gateway API is supported by many projects. But in this article I will show, how to deploy Kubernetes API Gataway resources, using  implementations and integrators of the Contour, the NGINX Kubernetes Gateway and recently released - the Google Kubernetes Engine.
-5.1 Deploying the demo with the Contour Gateway API
+### 5.1 Deploying the demo with the Contour Gateway API
 
 ```
 CODE PART
 ```
 
-5.2 Deploying the demo with the GKE Gateway API
+### 5.2 Deploying the demo with the GKE Gateway API
 
 ```
 CODE PART
 ```
 
-5.3 Deploying the demo with the NGINX Kubernetes Gateway
+### 5.3 Deploying the demo with the NGINX Kubernetes Gateway
 
 ```
 CODE PART
 ```
 
-6. This part contains the main conclusions.
+## 6. This part contains the main conclusions.
 
 ### Сonclusions
 
@@ -128,7 +130,7 @@ Despite the advatages of the the Gateway API, an important features like request
 And notice that there is no good or bad technology, picking the right tool for theapplication based on where and how you are going to use it. 
 
 
-8. This part contains the sources, used to write the article
+## 7. This part contains the sources, used to write the article
 
 ### Sources
 

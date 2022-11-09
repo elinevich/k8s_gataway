@@ -1,7 +1,9 @@
-# Coming changes of Ingress
-## The Kubernetes API Gateway in GKE, Contour, NGINX implementations
+# The Kubernetes API Gateway: Ingress replacement or evolution?
+
+![Logo](/assets/img/diagram.svg)
 
 > This article contains an explanation of the new powerful technology from Kubernetes - Gateway API, the benefits of using it with an example of GKE, Contour and NGINX providers.
+
 
 * [What is the Gateway API? Will it replace the Ingress?](#what-is-the-gateway-api-will-it-replace-the-ingress)
 * [What problems does the Ingress have? ](#what-problems-does-the-ingress-have)
@@ -53,7 +55,6 @@ You can implement numerous protocols with Gateway API, including support for TCP
 > A redirects allow to give more than one URL address to a page, a rewrites - to completely separate the URL from the resource. 
 
 This is a necessary and powerful thing, which is available in Ingress only through annotations.
-
 Filters to path redirects and rewrites became available with v1beta1 version of the Gateway API, but still in experimental mode.
 
 ### Traffic splitting
@@ -80,7 +81,7 @@ The API Gateway currently provides integration with Flagger — a progressive de
 - Gateway
 - Route Resources
 
-![Текст с описанием картинки](/assets/img/diagram.png)
+![Текст с описанием картинки](/assets/img/diagram.svg)
 
 ### GatewayClass
 

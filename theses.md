@@ -5,7 +5,7 @@
 
 1. Introdaction: answering the question what is the Gateway API? Will it replace the Ingress?
 
-## What is the Gateway API? Will it replace the Ingress?
+### What is the Gateway API? Will it replace the Ingress?
 
 The Gateway API is an open source project managed by the SIG-NETWORK community, which provides a collection of resources that model service networking in Kubernetes. 
 
@@ -14,7 +14,7 @@ The Gateway is not a Ingress replacement, it is an evolution of Ingress that pro
 
 2. Reveal the problems of Ingress.
 
-## What problems does the Ingress have?
+### What problems does the Ingress have?
 
 2.1 Ingress is supporting only one user role – the Kubernetes administrator or operator, who manages the configuration.
 
@@ -22,7 +22,7 @@ The Gateway is not a Ingress replacement, it is an evolution of Ingress that pro
 
 3. Reveal the advantages of Gateway API.
 
-## What advantages does the Gateway API have over the Ingress?
+### What advantages does the Gateway API have over the Ingress?
 
 3.1. Describe what cross namespace routing is and how it works in the Gateway API.
 
@@ -69,7 +69,7 @@ The Gateway API supports TLS configuration at various points in the network path
 You also can configure the Gateway to reference a certificate in a different namespaces.
 
 4. Describe the resources of Gateway API.
-## Gateway API resources
+### Gateway API resources
 
 - GatewayClass
 - Gateway
@@ -117,7 +117,7 @@ CODE PART
 
 6. This part contains the main conclusions.
 
-## Сonclusions
+### Сonclusions
 
 The Gateway API is the newest way to expose Kubernetes API, positioned as role-oriented, portable, expressive and extensible standart for developing.
 
@@ -130,7 +130,7 @@ And notice that there is no good or bad technology, picking the right tool for t
 
 8. This part contains the sources, used to write the article
 
-## Sources
+### Sources
 
 This article was created using the following sources:
 [Kubernetes Gateway API](https://gateway-api.sigs.k8s.io/),

@@ -1,6 +1,6 @@
 # The Kubernetes API Gateway: Ingress replacement or evolution?
 
-![Logo](/assets/img/logo.svg)
+![Logo](/assets/img/logo.png)
 
 > This article contains an explanation of the new powerful technology from Kubernetes - Gateway API, the benefits of using it with an example of GKE, Contour and NGINX providers.
 
@@ -81,7 +81,7 @@ The API Gateway currently provides integration with Flagger — a progressive de
 - Gateway
 - Route Resources
 
-![Текст с описанием картинки](/assets/img/diagram.svg)
+![Текст с описанием картинки](/assets/img/diagram.png)
 
 ### GatewayClass
 

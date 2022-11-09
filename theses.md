@@ -1,7 +1,7 @@
 # The Kubernetes API Gateway: Ingress replacement or evolution?
 ## Deploy Gateway API with GKE, Contour and NGINX implementations
 
-## Theses
+# Theses
 
 ## 1. Introdaction: answering the question what is the Gateway API? Will it replace the Ingress?
 

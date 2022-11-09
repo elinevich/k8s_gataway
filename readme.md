@@ -81,7 +81,7 @@ The API Gateway currently provides integration with Flagger — a progressive de
 - Gateway
 - Route Resources
 
-![Текст с описанием картинки](/assets/img/diagram.png)
+![how gateway works](/assets/img/diagram.png)
 
 ### GatewayClass
 
@@ -267,7 +267,7 @@ kubectl describe httproute.gateway.networking.k8s.io store
 
 These routing rules will process HTTP traffic in the following manner:
 
-![Текст с описанием картинки](/assets/img/routes.png)
+![routes diagram](/assets/img/routes.png)
 
 8. Testing
 

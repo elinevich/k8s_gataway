@@ -81,7 +81,7 @@ The API Gateway currently provides integration with Flagger — a progressive de
 - Gateway
 - Route Resources
 
-![how gateway works](/assets/img/diagram.png)
+![how gateway works](/assets/img/diagram2.png)
 
 ### GatewayClass
 

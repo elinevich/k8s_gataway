@@ -1,7 +1,7 @@
 # The Kubernetes API Gateway: Ingress replacement or evolution?
 ## Deploy Gateway API with GKE, Contour and NGINX implementations
 
-# Theses
+# The theses
 
 ## 1. Introdaction: answering the question what is the Gateway API? Will it replace the Ingress?
 
@@ -84,22 +84,27 @@ You also can configure the Gateway to reference a certificate in a different nam
 
 A GatewayClass is a resource that defines a template for TCP/UDP (level 4) load balancers and HTTP(S) (level 7) load balancers in a Kubernetes cluster. 
 Defines a cluster-scoped resource that's a template for creating load balancers in a cluster.
-4.2. Define the Gateway
+
+### 4.2. Define the Gateway
 
 ### Gateway
 
 Defines where and how the load balancers listen for traffic. Cluster operators create Gateways in their clusters based on a GatewayClass.
-4.3. Define the Route Resources
+
+### 4.3. Define the Route Resources
 
 ### Route Resources
 
 Route resources define protocol-specific rules for mapping requests from a Gateway to Kubernetes Services. It includes resources like HTTPRoute, TLSRoute, TCPRoute, UDPRoute, GRPCRoute.
 
-## 5. From theory to practice. Prerequisites
+## 5. The development part
+
+### From theory to practice. Prerequisites
 
 This is practise part, which shows how to deploy Gateway API, using Contour, GKE and NGINX implementations.
 
 The Gateway API is supported by many projects. But in this article I will show, how to deploy Kubernetes API Gataway resources, using  implementations and integrators of the Contour, the NGINX Kubernetes Gateway and recently released - the Google Kubernetes Engine.
+
 ### 5.1 Deploying the demo with the Contour Gateway API
 
 ```

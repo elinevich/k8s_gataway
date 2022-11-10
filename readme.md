@@ -76,6 +76,8 @@ The API Gateway currently provides integration with Flagger — a progressive de
 
 ## Gateway API resources
 
+> Gateway API resources is a collection of objects, which allow to enable robust Kubernetes service networking through expressive, extensible and role-oriented interfaces that are implemented by many vendors and have support.
+
 - GatewayClass
 - Gateway
 - Route Resources

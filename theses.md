@@ -69,8 +69,11 @@ The Gateway API supports TLS configuration at various points in the network path
 
 You also can configure the Gateway to reference a certificate in a different namespaces.
 
-## 4. Describe the resources of Gateway API.
+## 4. Define what the resources are and describe it.
+
 ### Gateway API resources
+
+> Gateway API resources is a collection of objects, that allows to enable robust Kubernetes service networking through expressive, extensible and role-oriented interfaces that are implemented by many users and have a good support.
 
 - GatewayClass
 - Gateway
